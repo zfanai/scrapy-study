@@ -7,7 +7,8 @@ from scrapy_splash import SplashRequest
 
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
-    allowed_domains = ["dmoz.org"]
+    #allowed_domains = ["dmoz.org"]
+    allowed_domains = ["douban.com"]
     start_urls = [
         #"http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         #"http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"

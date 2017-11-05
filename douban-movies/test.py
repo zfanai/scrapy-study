@@ -14,8 +14,10 @@ def func2():
     body=''
     with open('tag.html', 'rb') as fo:
         body=fo.read(-1)
-    sel=Selector(text=body).xpath('/html')  # 绝对路径定位
-    print 'sel:', sel
+    #sel=Selector(text=body).xpath('/html')  # 绝对路径定位
+    sel = Selector(text=body).xpath('//div[@id="app"]/div/div/div')
+    print 'sel:', sel, len(sel)
+
 
 if __name__=='__main__':
     func2()
