@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for tutorial project
+# Scrapy settings for splash_test project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -8,18 +8,33 @@
 #     http://doc.scrapy.org/en/latest/topics/settings.html
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
+ITEM_PIPELINES = {
+        'splash_test.pipelines.SplashTestPipeline':300
+        }
+BOT_NAME = 'splash_test'
 
-BOT_NAME = 'tutorial'
+SPIDER_MODULES = ['splash_test.spiders']
+NEWSPIDER_MODULE = 'splash_test.spiders'
 
-SPIDER_MODULES = ['tutorial.spiders']
-NEWSPIDER_MODULE = 'tutorial.spiders'
-
-
+SPLASH_URL = 'http://192.168.1.108:8050'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
+#USER_AGENT = 'splash_test (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -47,13 +62,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialSpiderMiddleware': 543,
+#    'splash_test.middlewares.SplashTestSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'tutorial.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'splash_test.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,9 +79,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'tutorial.pipelines.TutorialPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'splash_test.pipelines.SplashTestPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,25 +103,3 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-#ITEM_PIPELINES = {'tutorial.pipelines.FilterWordsPipeline': 1}
-
-USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
-
-# SPLASH相关设置
-''''''
-SPLASH_URL = 'http://192.168.1.108:8050'
-DOWNLOADER_MIDDLEWARES = {
-'scrapy_splash.SplashCookiesMiddleware': 723,
-'scrapy_splash.SplashMiddleware': 725,
-'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-}
-
-SPIDER_MIDDLEWARES = {
-'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-}
-
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-
-HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
-
-

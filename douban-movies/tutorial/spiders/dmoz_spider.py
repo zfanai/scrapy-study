@@ -3,6 +3,7 @@
 
 import scrapy
 from ..items import DmozItem
+from scrapy_splash import SplashRequest
 
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
@@ -18,16 +19,23 @@ class DmozSpider(scrapy.Spider):
         #'http://127.0.0.1:5000/'
         #'https://movie.douban.com/'
         'https://movie.douban.com/tag/#/',
+        #'http://www.yidianzixun.com/channel/w/打通?searchword=打通',
         #'https://movie.douban.com/j/new_search_subjects?sort=T&range=0,10&tags=&start=20'
     ]
+
+    def start_requests(self):
+        print 'start_request:1'
+        for url in self.start_urls:
+            yield SplashRequest(url, self.parse, args={'wait': 3})
     
     def parse(self, response):
         filename = response.url.split("/")[-2]
         print 'response:', filename 
-        filename='sdf123'
+        filename='movie.html'
         with open(filename, 'wb') as f:
             f.write(response.body)
-        # 
+        #
+        return
         sel_list=response.xpath('//ul/li')
         print 'sel_list:', len(sel_list), sel_list[0]
         

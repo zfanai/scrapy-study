@@ -4,3 +4,6 @@ http://blog.csdn.net/Inke88/article/details/60589170
 
 http://www.cnblogs.com/zhonghuasong/p/5976003.html  
 scrapy-splash 解决js更新的页面的问题
+
+2017/11/5
+scrapy-splash 生效了， 可以使用
