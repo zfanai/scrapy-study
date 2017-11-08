@@ -19,9 +19,9 @@ class DmozSpider(scrapy.Spider):
         #'http://easyview.medtrum.eu'
         #'http://127.0.0.1:5000/'
         #'https://movie.douban.com/'
-        'https://movie.douban.com/tag/#/',
+        #'https://movie.douban.com/tag/#/',
         #'http://www.yidianzixun.com/channel/w/打通?searchword=打通',
-        #'https://movie.douban.com/j/new_search_subjects?sort=T&range=0,10&tags=&start=20'
+        'https://movie.douban.com/j/new_search_subjects?sort=T&range=0,10&tags=&start=20'
     ]
 
     def start_requests(self):
